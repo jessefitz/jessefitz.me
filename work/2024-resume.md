@@ -5,9 +5,9 @@ title: Resume
 
 # Jesse C. FitzGibbon
 
-**Strategic Technologist and Builder**  
-[jesse.c.fitzgibbon@gmail.com](mailto:jesse.c.fitzgibbon@gmail.com)  
-
+**Strategic Technologist and Builder**<br>
+[jesse.c.fitzgibbon@gmail.com](mailto:jesse.c.fitzgibbon@gmail.com)<br>
+<a href="../downloads/JesseFitzGibbon2024.pdf" target="_blank">(PDF)</a>
 
 ## PROFESSIONAL STATEMENT
 
@@ -42,7 +42,7 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 **Role: Co-founder & Chief Technology Officer (CTO)**
 Jesse co-founded Verfico Technology in 2022. Verfico is a tech startup specializing in SaaS product development, with a focus on ensuring fair pay and wage compliance practices in the construction industry.
 
-As CTO, Jesse was instrumental in driving the technology and product strategy that led to a **successful exit by way of acquisition** in late 2024.
+As CTO, Jesse was instrumental in driving the technology and product strategy that led to a **successful acquisition** of Verfico in late 2024.
 
 - Defined and executed the company’s technology and product vision, laying the foundation for a scalable and market-leading platform that directly contributed to the acquisition.
 - Built the development team and technology architecture from the ground up, contributing directly to product design, feature development, coding, testing, and deployment to ensure rapid progress and innovation.
