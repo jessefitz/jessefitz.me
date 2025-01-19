@@ -8,5 +8,5 @@ I focus on building purposeful tech solutions that deliver real-world value. Wit
 
 You can learn more about me and the value I provide via the following resources:
 
-- [Resume](/work/2024-resume.md)
+- [Resume](/work/2025-resume.md)
 - [LinkedIn](https://www.linkedin.com/in/jessefitzgibbon/)
