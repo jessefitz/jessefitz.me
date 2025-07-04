@@ -6,4 +6,5 @@ layout: home
 ---
 
 This is a space for things I find interesting in the moment that may or may not seem so interesting many moments from now.
-It's a living space, so be kind as I work on breathing some life into it.
+
+It's a living space.  What's here today may very well not be here tomorrow :) 
