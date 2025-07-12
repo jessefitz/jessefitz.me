@@ -4,5 +4,5 @@ title: resume
 ---
 
 <script>
-    window.location.href = "/Profession/";
+    window.location.href = "/profession/";
 </script>

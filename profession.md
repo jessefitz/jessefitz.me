@@ -1,7 +1,7 @@
 ---
 layout: page-no-heading
 title: Profession
-permalink: /Profession/
+permalink: /profession/
 ---
 
 I build purposeful solutions that drive meaningful impact. With broad experience across product strategy, technical leadership, and consulting, I help teams and organizations innovate with clarity, confidence, and long-term value.
