@@ -6,7 +6,7 @@ title: Professional Portfolio
 # Jesse C. FitzGibbon
 
 Strategic Technologist | Product Leader | Builder
-📧 jesse.c.fitzgibbon@gmail.com | 📞 410.440.3238 | 📄 <a href="../downloads/JesseFitzGibbon.20025.07.docx" target="_blank">Resume</a>
+📧 jesse.c.fitzgibbon@gmail.com | 📞 410.440.3238 | 📄 <a href="../downloads/JesseFitzGibbon.20025.10.docx" target="_blank">Resume</a>
 
 ---
 
@@ -23,14 +23,15 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 ### **James G. Davis Construction Company (2025 – Present)**  
 **Enterprise Applications Manager**
 
-- Leads team responsible for the support and continuous improvement of the company’s portfolio of enterprise software, including ERP and field operations platforms.
-- Provides strategic leadership across enterprise applications, aligning with business needs and driving improvements in system performance, reliability, and user experience.
-- Founding member of the corporate AI focus group, shaping AI strategy and piloting tools to enhance productivity and decision-making.
-- Guides internal architecture team on application development and cloud best practices, establishing standards to ensure maintainability and scalability.
-- Leads efforts to unwind and modernize legacy system customizations and integrations, reducing risk and improving supportability.
-- Serves as key technical advisor and cross-functional collaborator between IT, business stakeholders, and software vendors.
-- Champions knowledge management and documentation across the Solutions team.
-
+- Leads the Solutions Team responsible for managing, supporting, and continuously improving DAVIS’s portfolio of enterprise technology — including ERP, field operations, and collaboration platforms critical to business execution.
+- Founding member of the corporate AI Focus Group, helping shape DAVIS’s AI strategy and pilot AI-driven tools to enhance productivity, knowledge management, and decision-making.
+- Provides strategic and technical leadership to ensure enterprise applications align with business objectives and deliver measurable value to stakeholders across finance, construction operations, and corporate departments.
+- Champions modernization through the design and implementation of key enterprise integrations that streamline workflows, eliminate manual processes, and strengthen data integrity across systems.
+- Established application portfolio management and project governance practices where none existed, bringing structure, prioritization, and transparency to technology decision-making.
+- Spearheaded the adoption of modern development standards and CI/CD practices within the internal development team, guiding a cultural shift toward maintainable, scalable, and testable code.
+- Serves as a mentor and partner to team members, fostering skill growth, accountability, and a shared sense of ownership while expanding the team’s capacity to deliver.
+- Plays a key role in organizational planning and budgeting, managing over $2M in technology and personnel expenditures and contributing to long-range digital strategy and corporate growth initiatives.
+  
 ---
 
 ### **Verfico Technology (2022 – 2025)**  
