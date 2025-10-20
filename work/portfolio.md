@@ -24,12 +24,12 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 **Enterprise Applications Manager**
 
 - Leads the Solutions Team responsible for managing, supporting, and continuously improving DAVIS’s portfolio of enterprise technology — including ERP, field operations, and collaboration platforms critical to business execution.
-- Founding member of the corporate AI Focus Group, helping shape DAVIS’s AI strategy and pilot AI-driven tools to enhance productivity, knowledge management, and decision-making.
+- Serves as a founding member of the corporate AI Focus Group, helping shape DAVIS’s AI strategy and piloting AI-driven tools to enhance productivity, knowledge management, and decision-making.
 - Provides strategic and technical leadership to ensure enterprise applications align with business objectives and deliver measurable value to stakeholders across finance, construction operations, and corporate departments.
 - Champions modernization through the design and implementation of key enterprise integrations that streamline workflows, eliminate manual processes, and strengthen data integrity across systems.
-- Established application portfolio management and project governance practices where none existed, bringing structure, prioritization, and transparency to technology decision-making.
-- Spearheaded the adoption of modern development standards and CI/CD practices within the internal development team, guiding a cultural shift toward maintainable, scalable, and testable code.
-- Serves as a mentor and partner to team members, fostering skill growth, accountability, and a shared sense of ownership while expanding the team’s capacity to deliver.
+- Leads application portfolio management and project governance practices, bringing structure, prioritization, and transparency to technology decision-making.
+- Supports the adoption of modern development standards and CI/CD practices within the internal development team, guiding a cultural shift toward maintainable, scalable, and testable code.
+- Mentors and partners with team members, fostering skill growth, accountability, and a shared sense of ownership while expanding the team’s capacity to deliver.
 - Plays a key role in organizational planning and budgeting, managing over $2M in technology and personnel expenditures and contributing to long-range digital strategy and corporate growth initiatives.
   
 ---
@@ -37,7 +37,7 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 ### **Verfico Technology (2022 – 2025)**  
 **Co-Founder & Chief Technology Officer (CTO)**
 
-- Co-founded a SaaS startup focused on wage compliance and fair pay in commercial construction.
+- Co-founded SaaS startup focused on wage compliance and fair pay in the commercial construction industry.
 - Drove technology and product strategy from concept to acquisition in 2025.
 - Built and led a cross-functional team of 10+ across engineering, product, and operations.
 - Increased ARR to $500K within two years through user-centric development and rapid iteration.
@@ -45,7 +45,7 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 - Built AI-powered data ingestion and normalization engine, improving efficiency and reducing manual processing.
 - Designed scalable, cloud-native architecture aligned with modern DevOps and deployment practices.
 - Contributed directly to securing key customer contracts and strategic partnerships.
-- Helped lead fundraising and go-to-market efforts alongside executive team.
+- Helped lead fundraising and go-to-market efforts alongside other members of the executive team.
 - Maintained 99.9% system uptime while supporting rapid growth.
 - Boosted customer retention and satisfaction through feature enhancements based on direct user feedback.
 
@@ -53,7 +53,7 @@ Jesse’s skills, interests, and success are built on a foundation of technology
 
 ### **Applied Information Sciences (AIS) (2005 – 2022)**
 
-AIS is a strategic consulting firm specializing in technology transformation. Jesse served in multiple capacities, culminating in a leadership role in the Office of the CTO.
+AIS is a strategic consulting firm specializing in modern technology transformation. Jesse served in multiple capacities throughout his time with AIS.
 
 #### **Director, Office of the CTO (2020 – 2022)**
 
@@ -67,7 +67,7 @@ AIS is a strategic consulting firm specializing in technology transformation. Je
 #### **Technical Program Manager (2015 – 2020)**
 
 - Led multi-year, multi-million-dollar strategic programs for commercial clients.
-- Scaled Exelon account from $150K to over $2.5M in annual revenue, becoming a top-3 performing account.
+- Scaled strategic commercial account from $150K to over $2.5M in annual revenue, becoming a top performing AIS account.
 - Grew program from a few engineers to a 50-person cross-functional product development organization.
 - Built a robust cloud hosting platform for critical workloads.
 - Modernized six customer-facing web platforms to enhance user experience and resilience.
@@ -76,9 +76,9 @@ AIS is a strategic consulting firm specializing in technology transformation. Je
 #### **Technical Project Manager and Software Engineer (2011 – 2015)**
 
 - Delivered web and mobile solutions for top-tier legal and consulting firms.
-- Built public-facing extranets for WilmerHale and ArentFox.
-- Delivered a corporate intranet for FTI Consulting.
-- Developed mobile case worker tools for Texas Department of Aging and Disability Services.
+- Built public-facing extranets for several multi-national law firms.
+- Delivered corporate intranet for national professional service firm.
+- Developed mobile case worker tools for local and state entities.
 
 #### **Senior Software Engineer (2005 – 2008)**
 
@@ -88,9 +88,9 @@ AIS is a strategic consulting firm specializing in technology transformation. Je
 
 **Other Notable Contributions:**
 
-- **aisGives:** Founded and managed company’s volunteer program.
-- **Project Lighthouse:** Participated in internal leadership development.
-- **Program Management Working Group:** Helped launch and scale the PM organization.
+- **aisGives:** Founded and managed company’s volunteerism program.
+- **Project Lighthouse:** Participated in internal leadership development program.
+- **Program Management Working Group:** Played an integral role in the launching and scaling of the company's centralized Project Management Office.
 
 ---
 
@@ -140,7 +140,7 @@ AIS is a strategic consulting firm specializing in technology transformation. Je
 - IT Operations & Support Strategy
 
 ### Project Delivery
-- Agile, Scrum, Shape Up, and Modern Methodologies
+- Agile, Scrum, Shape Up, and Modern Project Management Methodologies
 - Project Estimation, Stakeholder Engagement
 - Test Planning and Execution
 - Change Management
@@ -165,7 +165,7 @@ AIS is a strategic consulting firm specializing in technology transformation. Je
 
 **Grassroots Crisis Intervention Center** – Howard County, MD  
 Supports crisis response, behavioral health, and homeless services.  
-Jesse’s involvement spans from high school volunteering to organizing workplace events and providing ongoing IT support.
+Jesse’s involvement spans from high school volunteering to organizing workplace events and providing ongoing IT support throughout his adult life.
 
 ---
 
