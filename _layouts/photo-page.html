@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<article
+  class="post h-entry"
+  itemscope
+  itemtype="http://schema.org/BlogPosting"
+>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">
+      {{ page.title | escape }}
+    </h1>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">{{ content }}</div>
+
+  {% if page.photo %}
+  <div class="post-image-container">
+    <a
+      href="https://assets.jessefitz.me/images/{{ page.photo }}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="https://assets.jessefitz.me/cdn-cgi/image/width=800,format=auto,quality=85/images/{{ page.photo }}"
+        alt="{{ page.title | escape }}"
+        class="post-image"
+        style="cursor: pointer"
+      />
+    </a>
+  </div>
+  {% endif %} {%- if site.disqus.shortname -%} {%- include disqus_comments.html
+  -%} {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

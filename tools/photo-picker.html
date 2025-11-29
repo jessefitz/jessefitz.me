@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Photos Picker - Upload to Azure</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        width: 100%;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 14px;
+      }
+
+      .status-section {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .status-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .status-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-block;
+      }
+
+      .status-icon.pending {
+        background: #ffc107;
+      }
+
+      .status-icon.success {
+        background: #28a745;
+      }
+
+      .status-icon.error {
+        background: #dc3545;
+      }
+
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .log-section {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        border-radius: 8px;
+        padding: 20px;
+        max-height: 300px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .log-entry {
+        margin-bottom: 5px;
+      }
+
+      .log-entry.error {
+        color: #f48771;
+      }
+
+      .log-entry.success {
+        color: #89d185;
+      }
+
+      .log-entry.info {
+        color: #7ec8e3;
+      }
+
+      .selected-photos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .photo-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .photo-card .photo-name {
+        padding: 8px;
+        font-size: 12px;
+        background: #f8f9fa;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .photo-card.uploaded {
+        border-color: #28a745;
+      }
+
+      .photo-card.uploading {
+        border-color: #ffc107;
+      }
+
+      .photo-card.error {
+        border-color: #dc3545;
+      }
+
+      .upload-status {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📸 Google Photos Picker</h1>
+      <p class="subtitle">
+        Select photos from Google Photos and upload them to Azure Blob Storage
+      </p>
+
+      <div class="status-section">
+        <div class="status-item">
+          <span class="status-icon pending" id="authStatus"></span>
+          <span id="authText">Not authenticated</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon pending" id="pickerStatus"></span>
+          <span id="pickerText">No photos selected</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon pending" id="uploadStatus"></span>
+          <span id="uploadText">Ready to upload</span>
+        </div>
+      </div>
+
+      <button id="authButton" onclick="authenticate()">
+        Sign in with Google
+      </button>
+      <button id="pickerButton" onclick="openPicker()" disabled>
+        Select Photos from Google Photos
+      </button>
+      <button
+        id="uploadButton"
+        onclick="uploadToAzure()"
+        disabled
+        class="hidden"
+      >
+        Upload to Azure
+      </button>
+
+      <div id="selectedPhotos" class="selected-photos"></div>
+
+      <h3 style="margin-top: 30px; margin-bottom: 10px; color: #333">
+        Activity Log
+      </h3>
+      <div class="log-section" id="logSection"></div>
+    </div>
+
+    <script>
+      // Configuration
+      const CONFIG = {
+        clientId:
+          "682089600800-airnvuab0kj986r9q2hhalndvn2og07u.apps.googleusercontent.com",
+        scope:
+          "https://www.googleapis.com/auth/photospicker.mediaitems.readonly",
+        pickerApiEndpoint: "https://photospicker.googleapis.com/v1/sessions",
+        azureConfigFile: "azure-config.json", // Path to Azure config file
+      };
+
+      // State management
+      let accessToken = null;
+      let pickerSessionId = null;
+      let selectedMediaItems = [];
+      let customFilename = null; // Store the custom filename chosen by user
+      let azureConfig = null; // Will be loaded from azure-config.json
+
+      // Logging utility
+      function log(message, type = "info") {
+        const logSection = document.getElementById("logSection");
+        const entry = document.createElement("div");
+        entry.className = `log-entry ${type}`;
+        const timestamp = new Date().toLocaleTimeString();
+        entry.textContent = `[${timestamp}] ${message}`;
+        logSection.appendChild(entry);
+        logSection.scrollTop = logSection.scrollHeight;
+        console.log(`[${type.toUpperCase()}] ${message}`);
+      }
+
+      // Load Azure configuration from file
+      async function loadAzureConfig() {
+        try {
+          log("Loading Azure configuration...");
+          const response = await fetch(CONFIG.azureConfigFile);
+
+          if (!response.ok) {
+            throw new Error(
+              `Failed to load Azure config: ${response.statusText}`
+            );
+          }
+
+          azureConfig = await response.json();
+
+          // Validate required fields
+          const requiredFields = [
+            "storage_account_name",
+            "storage_account_key",
+            "container_name",
+          ];
+          const missingFields = requiredFields.filter(
+            (field) => !azureConfig[field]
+          );
+
+          if (missingFields.length > 0) {
+            throw new Error(
+              `Azure config missing required fields: ${missingFields.join(
+                ", "
+              )}`
+            );
+          }
+
+          log("Azure configuration loaded successfully", "success");
+          return true;
+        } catch (error) {
+          log(`Failed to load Azure config: ${error.message}`, "error");
+          log(
+            "Please ensure azure-config.json exists in the tools folder",
+            "error"
+          );
+          return false;
+        }
+      }
+
+      // Update status indicators
+      function updateStatus(statusId, textId, status, text) {
+        const statusIcon = document.getElementById(statusId);
+        const statusText = document.getElementById(textId);
+        statusIcon.className = `status-icon ${status}`;
+        statusText.textContent = text;
+      }
+
+      // OAuth 2.0 Authentication
+      async function authenticate() {
+        log("Initiating OAuth 2.0 authentication...");
+
+        const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+        authUrl.searchParams.append("client_id", CONFIG.clientId);
+        authUrl.searchParams.append(
+          "redirect_uri",
+          window.location.origin + window.location.pathname
+        );
+        authUrl.searchParams.append("response_type", "token");
+        authUrl.searchParams.append("scope", CONFIG.scope);
+
+        log("Redirecting to Google authentication page...");
+        window.location.href = authUrl.toString();
+      }
+
+      // Check for access token in URL hash (OAuth redirect)
+      function checkForAccessToken() {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+
+        if (params.has("access_token")) {
+          accessToken = params.get("access_token");
+          log("Access token obtained successfully!", "success");
+          updateStatus("authStatus", "authText", "success", "Authenticated ✓");
+
+          // Clean up URL
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+
+          // Enable picker button
+          document.getElementById("authButton").disabled = true;
+          document.getElementById("pickerButton").disabled = false;
+
+          return true;
+        }
+        return false;
+      }
+
+      // Create a Picker session
+      async function createPickerSession() {
+        log("Creating Picker API session...");
+
+        try {
+          const response = await fetch(CONFIG.pickerApiEndpoint, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({}),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Failed to create session: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+          pickerSessionId = data.id;
+          log(`Session created: ${pickerSessionId}`, "success");
+          return data.pickerUri;
+        } catch (error) {
+          log(`Error creating session: ${error.message}`, "error");
+          throw error;
+        }
+      }
+
+      // Open Google Photos Picker
+      async function openPicker() {
+        try {
+          const pickerUri = await createPickerSession();
+          log("Opening Google Photos picker...");
+
+          // Open picker in a new window with autoclose
+          const pickerWindow = window.open(
+            pickerUri + "/autoclose",
+            "GooglePhotosPicker",
+            "width=800,height=600"
+          );
+
+          // Start polling for completion
+          pollPickerSession();
+        } catch (error) {
+          log(`Failed to open picker: ${error.message}`, "error");
+        }
+      }
+
+      // Fetch media items to get filename for prompting user
+      async function fetchMediaItemsForFilename() {
+        try {
+          log("Fetching media item details...");
+          const response = await fetch(
+            `${CONFIG.pickerApiEndpoint.replace(
+              "/sessions",
+              ""
+            )}/mediaItems?sessionId=${pickerSessionId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(
+              `Failed to fetch media items: ${response.statusText}`
+            );
+          }
+
+          const data = await response.json();
+          const mediaItems = data.mediaItems || [];
+
+          if (mediaItems.length > 0) {
+            const firstItem = mediaItems[0];
+            const originalFilename =
+              firstItem.mediaFile?.filename || "photo.jpg";
+
+            log(`Original filename: ${originalFilename}`, "info");
+
+            // Prompt user for custom filename with default as original
+            const userFilename = prompt(
+              `Enter a filename for this image:\n(Leave as-is to keep original name)`,
+              originalFilename
+            );
+
+            if (userFilename && userFilename.trim()) {
+              customFilename = userFilename.trim();
+              log(`Custom filename set to: ${customFilename}`, "success");
+            } else {
+              customFilename = originalFilename;
+              log(`Using original filename: ${customFilename}`, "info");
+            }
+          } else {
+            log("No media items found in session", "error");
+            customFilename = "photo.jpg"; // Fallback
+          }
+        } catch (error) {
+          log(`Error fetching media items: ${error.message}`, "error");
+          customFilename = "photo.jpg"; // Fallback
+        }
+      }
+
+      // Poll the session to check if user has selected media
+      async function pollPickerSession() {
+        log("Polling session for user selections...");
+        updateStatus(
+          "pickerStatus",
+          "pickerText",
+          "pending",
+          "Waiting for selection..."
+        );
+
+        const maxAttempts = 60; // 5 minutes with 5-second intervals
+        let attempts = 0;
+
+        const pollInterval = setInterval(async () => {
+          attempts++;
+
+          try {
+            const response = await fetch(
+              `${CONFIG.pickerApiEndpoint}/${pickerSessionId}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error(`Polling failed: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            if (data.mediaItemsSet) {
+              clearInterval(pollInterval);
+              log("User has selected media items!", "success");
+              log(`Session ID: ${pickerSessionId}`, "success");
+
+              // Update status
+              updateStatus(
+                "pickerStatus",
+                "pickerText",
+                "success",
+                "Photos selected ✓"
+              );
+
+              // Fetch media items to get the original filename
+              await fetchMediaItemsForFilename();
+
+              // Enable upload button - we'll upload the session ID
+              document
+                .getElementById("uploadButton")
+                .classList.remove("hidden");
+              document.getElementById("uploadButton").disabled = false;
+
+              log(
+                "Click 'Upload to Azure' to save the session information",
+                "info"
+              );
+            } else if (attempts >= maxAttempts) {
+              clearInterval(pollInterval);
+              log("Polling timeout - user may have closed the picker", "error");
+              updateStatus(
+                "pickerStatus",
+                "pickerText",
+                "error",
+                "Selection timeout"
+              );
+            }
+          } catch (error) {
+            clearInterval(pollInterval);
+            log(`Polling error: ${error.message}`, "error");
+            updateStatus(
+              "pickerStatus",
+              "pickerText",
+              "error",
+              "Polling failed"
+            );
+          }
+        }, 5000); // Poll every 5 seconds
+      }
+
+      // Upload to Azure Blob Storage
+      async function uploadToAzure() {
+        log("Starting upload to Azure Blob Storage...");
+        updateStatus("uploadStatus", "uploadText", "pending", "Uploading...");
+
+        document.getElementById("uploadButton").disabled = true;
+
+        try {
+          // Create session metadata including the access token
+          const sessionMetadata = {
+            sessionId: pickerSessionId,
+            accessToken: accessToken,
+            customFilename: customFilename, // Include the custom filename
+            pickerApiEndpoint: CONFIG.pickerApiEndpoint,
+            createdAt: new Date().toISOString(),
+            note: "Process this session using process_picker_metadata.py",
+          };
+
+          // Upload session metadata as JSON to Azure
+          const blobName = `picker-session-${Date.now()}.json`;
+          const metadataBlob = new Blob(
+            [JSON.stringify(sessionMetadata, null, 2)],
+            {
+              type: "application/json",
+            }
+          );
+
+          log(`Uploading session metadata: ${blobName}...`);
+          await uploadBlobToAzure(blobName, metadataBlob);
+
+          log(`Successfully uploaded session metadata!`, "success");
+          log(`Session ID: ${pickerSessionId}`, "info");
+          log(
+            `Run: python process_picker_metadata.py --session-file ${blobName}`,
+            "info"
+          );
+
+          updateStatus(
+            "uploadStatus",
+            "uploadText",
+            "success",
+            "Session saved ✓"
+          );
+        } catch (error) {
+          log(`Failed to upload session: ${error.message}`, "error");
+          updateStatus("uploadStatus", "uploadText", "error", "Upload failed");
+        }
+
+        document.getElementById("uploadButton").disabled = false;
+      }
+
+      // Upload a blob to Azure Storage using REST API
+      async function uploadBlobToAzure(blobName, blob) {
+        if (!azureConfig) {
+          throw new Error("Azure configuration not loaded");
+        }
+
+        const { storage_account_name, container_name, storage_account_key } =
+          azureConfig;
+        const blobUrl = `https://${storage_account_name}.blob.core.windows.net/${container_name}/${blobName}`;
+
+        // Create authorization header using SharedKey
+        const date = new Date().toUTCString();
+        const contentLength = blob.size;
+        const blobType = "BlockBlob";
+
+        const stringToSign = `PUT\n\n\n${contentLength}\n\n${blob.type}\n\n\n\n\n\n\nx-ms-blob-type:${blobType}\nx-ms-date:${date}\nx-ms-version:2021-08-06\n/${storage_account_name}/${container_name}/${blobName}`;
+
+        const signature = await createSignature(
+          stringToSign,
+          storage_account_key
+        );
+        const authHeader = `SharedKey ${storage_account_name}:${signature}`;
+
+        const response = await fetch(blobUrl, {
+          method: "PUT",
+          headers: {
+            "x-ms-date": date,
+            "x-ms-version": "2021-08-06",
+            "x-ms-blob-type": blobType,
+            "Content-Type": blob.type,
+            "Content-Length": contentLength.toString(),
+            Authorization: authHeader,
+          },
+          body: blob,
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(
+            `Azure upload failed: ${response.statusText} - ${errorText}`
+          );
+        }
+
+        return blobUrl;
+      }
+
+      // Create HMAC-SHA256 signature for Azure Storage authentication
+      async function createSignature(stringToSign, key) {
+        const encoder = new TextEncoder();
+        const keyData = Uint8Array.from(atob(key), (c) => c.charCodeAt(0));
+        const messageData = encoder.encode(stringToSign);
+
+        const cryptoKey = await crypto.subtle.importKey(
+          "raw",
+          keyData,
+          { name: "HMAC", hash: "SHA-256" },
+          false,
+          ["sign"]
+        );
+
+        const signature = await crypto.subtle.sign(
+          "HMAC",
+          cryptoKey,
+          messageData
+        );
+        return btoa(String.fromCharCode(...new Uint8Array(signature)));
+      }
+
+      // Initialize on page load
+      window.addEventListener("load", async () => {
+        log("Photo Picker initialized");
+
+        // Load Azure configuration first
+        const configLoaded = await loadAzureConfig();
+        if (!configLoaded) {
+          log("Cannot proceed without Azure configuration", "error");
+          document.getElementById("authButton").disabled = true;
+          return;
+        }
+
+        // Check if we have an access token from OAuth redirect
+        if (checkForAccessToken()) {
+          // Already authenticated
+        } else {
+          log("Please sign in with Google to continue");
+        }
+      });
+    </script>
+  </body>
+</html>

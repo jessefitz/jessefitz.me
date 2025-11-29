@@ -1,0 +1,226 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+
+// Update these custom styles for the home page
+.home-container {
+  min-height: calc(100vh - 200px); // Adjust based on your header/footer height
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // This centers the content vertically
+  align-items: center;
+  box-sizing: border-box; // Include padding and border in height calculation
+}
+
+.home-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    flex-grow: 1; // Allow it to grow to fill available space
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Center content vertically
+    align-items: center; // Center content horizontally
+  }
+  
+
+.home-content h1 {
+  font-size: 2rem; // Slightly reduce font size
+  margin-bottom: 0.5rem; // Reduce margin
+}
+
+.home-content h2 {
+  font-size: 1.25rem; // Slightly reduce font size
+  margin-bottom: 1rem; // Reduce margin
+  color: #666;
+}
+
+.home-content p {
+  font-size: 1rem; // Slightly reduce font size
+  line-height: 1.5;
+  margin-bottom: 1rem; // Reduce margin
+}
+
+// Adjust the main content area to allow for footer visibility
+.page-content {
+  padding: 0;
+  flex: 1 0 auto; // Allow flexbox to push footer down
+  display: flex;
+  flex-direction: column;
+}
+
+// Ensure the footer stays at the bottom
+.site-footer {
+  flex-shrink: 0; // Prevent footer from shrinking
+  padding: 1rem;
+  text-align: center;
+  background-color: #f8f8f8;
+  border-top: 1px solid #e7e7e7;
+}
+
+// Adjust overall page layout
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0; // Reset margin to remove unnecessary space
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0.5rem;
+  }
+  
+  .home-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .home-content h2 {
+    font-size: 1.1rem;
+  }
+}
+
+// Add a semi-transparent background to headings and paragraphs
+.home-content h1,
+.home-content h2,
+.home-content h3,
+.home-content p {
+  background-color: rgba(255, 255, 255, 0.7); // Semi-transparent white background
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+// Adjust the header styles if necessary
+.site-header {
+  border-top: 5px solid $grey-color-dark;
+  border-bottom: 1px solid $grey-color-light;
+  min-height: $spacing-unit * 1.865;
+  padding-top: 10px; // Reduced from default
+  padding-bottom: 10px; // Reduced from default
+}
+
+// Add these custom styles for the post image
+.post-image-container {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block; // This helps with centering
+}
+
+// Add these styles for the blog listing page
+.blog-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.page-heading {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.post-list {
+  margin-left: 1rem; // Slight indent for the list
+}
+
+.post-item {
+  margin-bottom: 2rem; // Spacing between posts
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.post-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  
+  text-align: left;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.post-date {
+  font-size: 1rem;
+  color: #666;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+.post-excerpt {
+  font-size: 1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.rss-subscribe {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+// Styles for post with image
+.post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.post-header {
+  margin-bottom: 2rem; // Add space below the header
+}
+
+.post-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.post-meta {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.post-content {
+  margin-top: 2rem; // Add space above the content
+  font-size: 1.1rem;
+  line-height: 1.6;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.post-image-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

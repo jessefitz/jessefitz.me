@@ -1,0 +1,8 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+tools/google-client-secret.json
+tools/token.json
+tools/azure-config.json
