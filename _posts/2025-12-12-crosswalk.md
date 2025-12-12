@@ -7,4 +7,4 @@ excerpt: "Accidental simplicity"
 published: true
 ---
 
-Paint on concrete
+Paint on asphalt
